@@ -65,16 +65,6 @@ $app->configure('database');
 
 $app->configure('swagger-lume');
 
-$app['config']['database.redis'] = [
-    'client' => 'predis',
-    'default' => [
-        'host' => env('REDIS_HOST', 'redis'),
-        'password' => env('REDIS_PASSWORD', null),
-        'port' => env('REDIS_PORT', 6379),
-        'database' => 0,
-    ],
-];
-
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -108,7 +98,6 @@ $app['config']['database.redis'] = [
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(\SwaggerLume\ServiceProvider::class);
 
 /*

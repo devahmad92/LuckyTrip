@@ -1,26 +1,77 @@
-# Lumen PHP Framework
+# Airport Management Application
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+## Overview
+This application is a backend service for managing airport data. It allows for creating, retrieving, updating, and deleting airport records, along with managing translations in different languages.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Technology Stack
+- **Backend Framework**: Laravel Lumen v10
+- **Database**: MySQL 8.0
+- **Web Server**: Nginx (using latest image)
+- **Containerization**: Docker and Docker Compose
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+## Setup and Installation
 
-## Official Documentation
+### Prerequisites
+- Docker and Docker Compose installed on your machine.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+### Steps to Run
+1. **Clone the Repository**: 
+   Clone the project repository to your local machine.
 
-## Contributing
+2. **Environment File**:
+   Copy the `.env.example` file to a new `.env` file and update the database credentials and other environment variables as needed.
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Build and Run with Docker**:
+   Navigate to the project directory and run the following command to build and start the containers:
+   ```
+   docker-compose up -d
+   ```
 
-## Security Vulnerabilities
+4. **Database Migrations**:
+   After the containers are up, run the following command to execute the database migrations:
+   ```
+   docker-compose exec app php artisan migrate
+   ```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+5. **Database Seeding**:
+   Optionally, if you have seed data available, run the following command to populate the database with initial data:
+   ```
+   docker-compose exec app php artisan db:seed
+   ```
 
-## License
+6. **Access the Application**:
+   The application will be accessible at `http://localhost:8080`.
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## API Endpoints
+- `GET /`: Returns the application version.
+- `GET /docs`: Generates and returns the OpenAPI documentation.
+- `GET /airports/{id}`: Retrieves a specific airport by ID.
+- `POST /airports`: Creates a new airport.
+- `PUT /airports/{id}`: Updates an existing airport by ID.
+- `DELETE /airports/{id}`: Deletes an airport by ID.
+- `GET /airports`: Lists all airports.
+
+## Swagger API Documentation
+Access the Swagger UI for the API documentation at `http://localhost:8080/api/documentation`. This provides an interactive interface to test and explore the API endpoints.
+
+## Database Schema
+### Models
+1. **Airport**: 
+   - Attributes: `iata_code`, `latitude`, `longitude`, `terms_conditions`.
+   - Relationships: Has many `AirportTranslations`.
+
+2. **AirportTranslation**: 
+   - Attributes: `airport_id`, `language_code`, `name`, `description`.
+   - Relationships: Belongs to `Airport`.
+
+## Testing
+- Run unit tests using the following command:
+  ```
+  docker-compose exec app php vendor/bin/phpunit
+  ```
+
+Unit tests are available to ensure the functionality of the application components and can be expanded as needed.
+
+## Additional Features
+- Redis integration for caching or session storage, as indicated by the Redis dependency.
+- OpenAPI (Swagger) integration for easy API testing and documentation.
