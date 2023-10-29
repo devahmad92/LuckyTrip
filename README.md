@@ -28,7 +28,7 @@ This application is a backend service for managing airport data. It allows for c
 3. **Install Dependencies**:
    Run the following command to install PHP dependencies through Composer:
    ```
-   docker-compose run --rm app composer install
+   composer install
    ```
 
 4. **Build and Run with Docker**:
