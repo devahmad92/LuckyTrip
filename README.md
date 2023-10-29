@@ -19,27 +19,37 @@ This application is a backend service for managing airport data. It allows for c
    Clone the project repository to your local machine.
 
 2. **Environment File**:
-   Copy the `.env.example` file to a new `.env` file and update the database credentials and other environment variables as needed.
+   Run the following command to copy the `.env.example` file to a new `.env` file:
+   ```
+   cp .env.example .env
+   ```
+   Update the `.env` file with your database credentials and other environment variables as needed.
 
-3. **Build and Run with Docker**:
+3. **Install Dependencies**:
+   Run the following command to install PHP dependencies through Composer:
+   ```
+   docker-compose run --rm app composer install
+   ```
+
+4. **Build and Run with Docker**:
    Navigate to the project directory and run the following command to build and start the containers:
    ```
    docker-compose up -d
    ```
 
-4. **Database Migrations**:
+5. **Database Migrations**:
    After the containers are up, run the following command to execute the database migrations:
    ```
    docker-compose exec app php artisan migrate
    ```
 
-5. **Database Seeding**:
+6. **Database Seeding**:
    Optionally, if you have seed data available, run the following command to populate the database with initial data:
    ```
    docker-compose exec app php artisan db:seed
    ```
 
-6. **Access the Application**:
+7. **Access the Application**:
    The application will be accessible at `http://localhost:8080`.
 
 ## API Endpoints
@@ -72,6 +82,3 @@ Access the Swagger UI for the API documentation at `http://localhost:8080/api/do
 
 Unit tests are available to ensure the functionality of the application components and can be expanded as needed.
 
-## Additional Features
-- Redis integration for caching or session storage, as indicated by the Redis dependency.
-- OpenAPI (Swagger) integration for easy API testing and documentation.
