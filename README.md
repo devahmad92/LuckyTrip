@@ -4,6 +4,7 @@
 This application is a backend service for managing airport data. It allows for creating, retrieving, updating, and deleting airport records, along with managing translations in different languages.
 
 ## Technology Stack
+- **PHP Version**: PHP 8.2
 - **Backend Framework**: Laravel Lumen v10
 - **Database**: MySQL 8.0
 - **Web Server**: Nginx (using latest image)
@@ -28,7 +29,7 @@ This application is a backend service for managing airport data. It allows for c
 3. **Install Dependencies**:
    Run the following command to install PHP dependencies through Composer:
    ```
-   composer install
+   docker-compose exec app composer install
    ```
 
 4. **Build and Run with Docker**:

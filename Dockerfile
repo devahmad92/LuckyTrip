@@ -4,5 +4,7 @@ FROM php:8.2-fpm
 # Install PDO MySQL extension
 RUN docker-php-ext-install pdo pdo_mysql
 
-# If you're using Redis and need the Redis extension, install it as well
-RUN pecl install redis && docker-php-ext-enable redis
+# Install Composer without hash verification for simplicity
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
