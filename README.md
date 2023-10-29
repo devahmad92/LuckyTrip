@@ -26,16 +26,16 @@ This application is a backend service for managing airport data. It allows for c
    ```
    Update the `.env` file with your database credentials and other environment variables as needed.
 
-3. **Install Dependencies**:
-   Run the following command to install PHP dependencies through Composer:
-   ```
-   docker-compose exec app composer install
-   ```
-
-4. **Build and Run with Docker**:
+3. **Build and Run with Docker**:
    Navigate to the project directory and run the following command to build and start the containers:
    ```
    docker-compose up -d
+   ```
+
+4. **Install Dependencies**:
+   Run the following command to install PHP dependencies through Composer:
+   ```
+   docker-compose exec app composer install
    ```
 
 5. **Database Migrations**:
